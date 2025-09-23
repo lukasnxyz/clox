@@ -8,11 +8,23 @@ set(CMAKE_C_STADARD_REQUIRED True)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_executable(clox
-  main.c
-  chunk.c
-  memory.c
-  debug.c
-  value.c
+  src/main.c
+  src/chunk.c
+  src/memory.c
+  src/debug.c
+  src/value.c
 )
+target_include_directories(clox PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-target_include_directories(clox PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+
+# ------ testing
+enable_testing()
+add_executable(test_clox
+  test/test_clox.c
+  src/chunk.c
+  src/memory.c
+  src/debug.c
+  src/value.c
+)
+target_include_directories(test_clox PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
+add_test(NAME clox_test COMMAND $<TARGET_FILE:test_clox>)
