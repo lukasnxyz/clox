@@ -13,9 +13,9 @@ add_executable(clox
   src/memory.c
   src/debug.c
   src/value.c
+  src/vm.c
 )
 target_include_directories(clox PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
-
 
 # ------ testing
 enable_testing()
@@ -25,6 +25,7 @@ add_executable(test_clox
   src/memory.c
   src/debug.c
   src/value.c
+  src/vm.c
 )
 target_include_directories(test_clox PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
 add_test(NAME clox_test COMMAND $<TARGET_FILE:test_clox>)
