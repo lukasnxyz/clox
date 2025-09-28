@@ -14,8 +14,14 @@ add_executable(clox
   src/debug.c
   src/value.c
   src/vm.c
+  src/scanner.c
+  src/compiler.c
 )
 target_include_directories(clox PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
+target_compile_options(clox PRIVATE
+  $<$<C_COMPILER_ID:MSVC>:/W4>
+  $<$<OR:$<C_COMPILER_ID:GNU>,$<C_COMPILER_ID:Clang>>:-Wall -Wextra -Wpedantic>
+)
 
 # ------ testing
 enable_testing()
@@ -26,6 +32,12 @@ add_executable(test_clox
   src/debug.c
   src/value.c
   src/vm.c
+  src/scanner.c
+  src/compiler.c
 )
 target_include_directories(test_clox PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
+target_compile_options(test_clox PRIVATE
+  $<$<C_COMPILER_ID:MSVC>:/W4>
+  $<$<OR:$<C_COMPILER_ID:GNU>,$<C_COMPILER_ID:Clang>>:-Wall -Wextra -Wpedantic>
+)
 add_test(NAME clox_test COMMAND $<TARGET_FILE:test_clox>)
