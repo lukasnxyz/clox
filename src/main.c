@@ -59,11 +59,11 @@ static void run_file(const char *path) {
 int main(int argc, const char *argv[]) {
   init_vm();
 
-  if (argc == 1) {
+  if (argc == 1)
     repl();
-  } else if (argc == 2) {
+  else if (argc == 2)
     run_file(argv[1]);
-  } else {
+  else {
     fprintf(stderr, "Usage: clox [path]\n");
     exit(64);
   }
